@@ -1,7 +1,7 @@
 #pragma once
 
 #include <random>
-#include <vector>
+#include <stack>
 
 namespace evol{
 
@@ -9,10 +9,11 @@ class Rng{
 public:
     Rng();
 
-    std::vector<int> fetchUniform(int from, int to, size_t num);
+    std::stack<int> fetchUniform(int from, int to, size_t num) const;
+    std::stack<double> fetchNormal( double expValue, double stdDev, size_t num) const;
 private:
     std::random_device rd_;
-    std::mt19937 gen_;
+    mutable std::mt19937 gen_;
 };
 
 }
